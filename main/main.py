@@ -114,7 +114,7 @@ data = {calificaciones_originales} # Usamos las calificaciones generadas exactam
     # Así, binary_search se prueba en una lista que está en la misma condición
     # que si hubiera sido ordenada por quick_sort.
     sorted_scores_for_search = calificaciones_originales.copy()
-    ordenamiento_quick_sort(sorted_scores_for_search)  # Ordenamos la copia para la búsqueda binaria
+    ordenamiento_quick_sort(sorted_scores_for_search)
 
     # Elegimos un elemento para buscar que esté presente en la lista original.
     objetivo_busqueda = random.choice(calificaciones_originales)
