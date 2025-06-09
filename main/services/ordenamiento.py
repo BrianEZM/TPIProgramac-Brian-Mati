@@ -9,10 +9,10 @@ def ordenamiento_insertion_sort(arr):
     Ordena una lista utilizando el algoritmo de Insertion Sort.
 
     Args:
-        arr (list): La lista de números a ordenar.
+        arr (lista): La lista de números a ordenar.
 
     Returns:
-        list: La lista ordenada.
+        lista: La lista ordenada.
     """
     n = len(arr)
     for i in range(1, n):
@@ -61,6 +61,5 @@ def ordenamiento_quick_sort(arr):
         return i + 1
 
     # Inicia el proceso de Quick Sort
-    # Quick Sort opera in-place, por lo que modificará la lista original.
     _quick_sort_recursive(arr, 0, len(arr) - 1)
     return arr  # Retorna la lista modificada (ordenada)

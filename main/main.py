@@ -38,11 +38,11 @@ def calcular_nps(calificaciones):
     total_calificaciones = len(calificaciones)
 
     for score in calificaciones:
-        if 1 <= score <= 6:  # Detractores
+        if 1 <= score <= 6:
             detractores += 1
-        elif 7 <= score <= 8:  # Pasivos
+        elif 7 <= score <= 8:
             pasivos += 1
-        elif 9 <= score <= 10:  # Promotores
+        elif 9 <= score <= 10:
             promotores += 1
 
     porcentaje_detractores = (detractores / total_calificaciones) * 100
@@ -64,11 +64,9 @@ def calcular_nps(calificaciones):
     }
 
 
+# Función principal que simula escenarios NPS.
+# Aplica algoritmos de ordenamiento y búsqueda, y mide su eficiencia.
 def main():
-    """
-    Función principal que simula escenarios NPS, aplica algoritmos de ordenamiento
-    y búsqueda, y mide su eficiencia.
-    """
     NUM_SCORES = 10000  # Definimos el número de calificaciones para la simulación
     print(f"Simulación escenario NPS con {NUM_SCORES} calificaciones:\n")
 
@@ -89,16 +87,11 @@ def main():
 
     # 3. Medir Tiempos de Ordenamiento
 
-    # Tiempo de Insertion Sort
-    # timeit.timeit ejecuta el código 'stmt' un número de veces ('number')
-    # con el entorno configurado en 'setup'. Es crucial pasar una copia
-    # de la lista para que cada algoritmo se pruebe con los datos originales desordenados.
+    # Tiempo de Insertion Sort (usamos timeit.timeit para medir eficiencia temporal)
     setup_code_insertion = f"""
 from services.ordenamiento import ordenamiento_insertion_sort
 data = {calificaciones_originales} # Usamos las calificaciones generadas exactamente
 """
-    # Se ejecuta 'number=1' porque para 10000 elementos, incluso una sola ejecución
-    # es lo suficientemente larga para medir. Para operaciones más rápidas, se usaría un 'number' mayor.
     tiempo_insertion = timeit.timeit("ordenamiento_insertion_sort(data.copy())", setup=setup_code_insertion, number=1)
     print(f"Tiempo de ordenamiento con Insertion Sort: {tiempo_insertion:.6f} segundos")
 
@@ -124,12 +117,10 @@ data = {calificaciones_originales} # Usamos las calificaciones generadas exactam
     ordenamiento_quick_sort(sorted_scores_for_search)  # Ordenamos la copia para la búsqueda binaria
 
     # Elegimos un elemento para buscar que esté presente en la lista original.
-    # Esto garantiza que ambos algoritmos de búsqueda encontrarán el objetivo.
     objetivo_busqueda = random.choice(calificaciones_originales)
 
     # Tiempo de Búsqueda Lineal
-    # Se usa 'number=100' para obtener un tiempo más estable, ya que la búsqueda
-    # de un solo elemento es muy rápida.
+    # Se usa 'number=100' para obtener un tiempo más estable
     setup_code_linear_search = f"""
 from services.busqueda import busqueda_lineal
 data = {calificaciones_originales} # La búsqueda lineal puede usar la lista desordenada
@@ -156,18 +147,6 @@ target = {objetivo_busqueda}
     print("\nConclusiones de la eficiencia de esta simulación:")
     print(f"El algoritmo de ordenamiento más eficiente fue: {mejor_ordenamiento}")
     print(f"El algoritmo de búsqueda más eficiente fue: {mejor_busqueda}")
-    print("\nConsideraciones Adicionales:")
-    print(
-        "- Ordenamiento: Para grandes volúmenes de datos (como 10,000 elementos), Quick Sort suele ser "
-        "significativamente más rápido que Insertion Sort debido a su complejidad de tiempo promedio "
-        "versus Insertion Sort.")
-    print(
-        "- Búsqueda: La Búsqueda Binaria es drásticamente más eficiente que la Búsqueda Lineal "
-        "en listas grandes y ordenadas. Sin embargo, la Búsqueda Binaria requiere que la lista esté previamente "
-        "ordenada, lo cual implica un costo adicional de ordenamiento.")
-    print(
-        "-> Esta simulación muestra cómo la elección del algoritmo correcto puede impactar drásticamente el "
-        "rendimiento de una aplicación, especialmente con grandes conjuntos de datos.")
 
 
 if __name__ == "__main__":
