@@ -111,8 +111,8 @@ data = {calificaciones_originales} # Usamos las calificaciones generadas exactam
     # 4. Medir Tiempos de Búsqueda
     # Para la búsqueda binaria, la lista DEBE estar ordenada.
     # Creamos una copia de las calificaciones originales y la ordenamos con quick_sort.
-    # Así, binary_search se prueba en una lista que está en la misma condición
-    # que si hubiera sido ordenada por quick_sort.
+    # Así, busqueda_binaria se prueba en una lista que está en la misma condición
+    # que si hubiera sido ordenada por ordenamiento_quick_sort.
     sorted_scores_for_search = calificaciones_originales.copy()
     ordenamiento_quick_sort(sorted_scores_for_search)
 
