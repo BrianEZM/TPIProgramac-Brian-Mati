@@ -11,8 +11,8 @@ def busqueda_lineal(arr, objetivo):
     """
     for i in range(len(arr)):
         if arr[i] == objetivo:
-            return i  # Retorna el índice si se encuentra
-    return -1  # Retorna -1 si no se encuentra
+            return i
+    return -1
 
 
 def busqueda_binaria(arr, objetivo):
