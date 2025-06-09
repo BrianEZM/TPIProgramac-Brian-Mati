@@ -26,14 +26,14 @@ def busqueda_binaria(arr, objetivo):
     Returns:
         int: El índice del objetivo si se encuentra, de lo contrario -1.
     """
-    low = 0
-    high = len(arr) - 1
-    while low <= high:
-        mid = (low + high) // 2
+    min = 0
+    max = len(arr) - 1
+    while min <= max:
+        mid = (min + max) // 2
         if arr[mid] == objetivo:
             return mid
         elif arr[mid] < objetivo:
-            low = mid + 1
+            min = mid + 1
         else:
-            high = mid - 1
+            max = mid - 1
     return -1
