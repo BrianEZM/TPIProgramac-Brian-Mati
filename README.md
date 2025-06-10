@@ -13,20 +13,9 @@ Tecnologías Utilizadas:
 
 Cómo Ejecutar el Proyecto:
 * Clona el repositorio: git clone https://github.com/tu-usuario/nombre-del-repositorio.git
+* Ejecuta el programa principal: Desde la raíz del proyecto, ejecuta main.py.
 
-* Estructura de Archivos: Asegúrate de que tus archivos estén organizados de la siguiente manera:
-.
-├── main.py
-└── services/
-    ├── __init__.py
-    ├── busqueda.py
-    └── ordenamiento.py
-
-Ejecuta el programa principal: Desde la raíz del proyecto, ejecuta main.py.
-
-Estructura del Proyecto
-* El proyecto está dividido en tres módulos principales para una clara separación de responsabilidades:
-
+Estructura del Proyecto: El proyecto está dividido en tres módulos principales para una clara separación de responsabilidades:
 * main.py: Es el punto de entrada del programa.
 ** Se encarga de la generación de datos (calificaciones NPS).
 ** Calcula el NPS y sus métricas (detractores, pasivos, promotores).
@@ -42,7 +31,7 @@ Estructura del Proyecto
 ** busqueda_lineal(arr, objetivo)
 ** busqueda_binaria(arr, objetivo)
 
-✍️ Autores
+✍️ Autores:
 Brian Zapata Marin + Matias Almeida / Estudiantes de Programación I Tecnicatura UTN 2025
 
 ¡Gracias!
