@@ -12,7 +12,7 @@ Tecnologías Utilizadas:
 * Módulos estándar de Python: random, timeit, sys.
 
 Cómo Ejecutar el Proyecto:
-* Clona el repositorio: git clone https://github.com/tu-usuario/nombre-del-repositorio.git
+* Clona el repositorio: git clone https://github.com/BrianEZM/TPIProgramac-Brian-Mati
 * Ejecuta el programa principal: Desde la raíz del proyecto, ejecuta main.py.
 
 Estructura del Proyecto: El proyecto está dividido en tres módulos principales para una clara separación de responsabilidades:
