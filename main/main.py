@@ -1,6 +1,7 @@
 import random
 import timeit
 import sys
+import json
 
 from services.ordenamiento import ordenamiento_quick_sort, ordenamiento_insertion_sort
 from services.busqueda import busqueda_lineal, busqueda_binaria
@@ -111,10 +112,8 @@ data = {calificaciones_originales} # Usamos las calificaciones generadas exactam
     # 4. Medir Tiempos de Búsqueda
     # Para la búsqueda binaria, la lista DEBE estar ordenada.
     # Creamos una copia de las calificaciones originales y la ordenamos con quick_sort.
-    # Así, busqueda_binaria se prueba en una lista que está en la misma condición
-    # que si hubiera sido ordenada por ordenamiento_quick_sort.
-    sorted_scores_for_search = calificaciones_originales.copy()
-    ordenamiento_quick_sort(sorted_scores_for_search)
+    scores_ordenados_para_busqueda = calificaciones_originales.copy()
+    ordenamiento_quick_sort(scores_ordenados_para_busqueda)
 
     # Elegimos un elemento para buscar que esté presente en la lista original.
     objetivo_busqueda = random.choice(calificaciones_originales)
@@ -126,27 +125,42 @@ from services.busqueda import busqueda_lineal
 data = {calificaciones_originales} # La búsqueda lineal puede usar la lista desordenada
 target = {objetivo_busqueda}
 """
-    time_linear = timeit.timeit("busqueda_lineal(data, target)", setup=setup_code_linear_search, number=100)
-    print(f"Tiempo de búsqueda con Búsqueda Lineal: {time_linear:.6f} segundos")
+    tiempo_lineal = timeit.timeit("busqueda_lineal(data, target)", setup=setup_code_linear_search, number=100)
+    print(f"Tiempo de búsqueda con Búsqueda Lineal: {tiempo_lineal:.6f} segundos")
 
     # Tiempo de Búsqueda Binaria
     setup_code_binary_search = f"""
 from services.busqueda import busqueda_binaria
-data = {sorted_scores_for_search} # La búsqueda binaria necesita datos ordenados
+data = {scores_ordenados_para_busqueda} # La búsqueda binaria necesita datos ordenados
 target = {objetivo_busqueda}
 """
-    time_binary = timeit.timeit("busqueda_binaria(data, target)", setup=setup_code_binary_search, number=100)
-    print(f"Tiempo de búsqueda con Búsqueda Binaria: {time_binary:.6f} segundos")
+    tiempo_binaria = timeit.timeit("busqueda_binaria(data, target)", setup=setup_code_binary_search, number=100)
+    print(f"Tiempo de búsqueda con Búsqueda Binaria: {tiempo_binaria:.6f} segundos")
 
     # Determinar qué algoritmo de búsqueda fue mejor
-    mejor_busqueda = "Búsqueda Lineal" if time_linear < time_binary else "Búsqueda Binaria"
-    if time_linear == time_binary:
+    mejor_busqueda = "Búsqueda Lineal" if tiempo_lineal < tiempo_binaria else "Búsqueda Binaria"
+    if tiempo_lineal == tiempo_binaria:
         mejor_busqueda = "Ambos fueron igual de eficientes"
 
     # 5. Conclusiones de Eficiencia
     print("\nConclusiones de la eficiencia de esta simulación:")
     print(f"El algoritmo de ordenamiento más eficiente fue: {mejor_ordenamiento}")
     print(f"El algoritmo de búsqueda más eficiente fue: {mejor_busqueda}")
+
+    # 6. Guardar resultados de rendimiento en un archivo JSON para generar graficos y/o analizar datos
+    performance_data = {
+        "Insertion Sort": tiempo_insertion,
+        "Quick Sort": tiempo_quick,
+        "Busqueda Lineal": tiempo_lineal,
+        "Busqueda Binaria": tiempo_binaria
+    }
+
+    try:
+        with open("resultados_de_performance.json", "w") as f:
+            json.dump(performance_data, f, indent=4)
+        print("\nResultados de rendimiento guardados en 'resultados_de_perfomance.json' para la generación del gráfico.")
+    except Exception as e:
+        print(f"\nError al guardar los resultados de rendimiento: {e}")
 
 
 if __name__ == "__main__":
